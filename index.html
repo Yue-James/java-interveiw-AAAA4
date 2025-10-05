@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIT1051 Interview Prep Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            background-color: #f8fafc;
+        }
+        .lang-toggle button.active {
+            background-color: #4f46e5;
+            color: white;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        .lang-toggle button {
+            transition: all 0.2s ease-in-out;
+        }
+        .section-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            margin-bottom: 2rem;
+            padding: 2rem;
+            border: 1px solid #e5e7eb;
+        }
+        .lang-zh {
+            font-family: 'Noto Sans SC', sans-serif;
+        }
+        code {
+            background-color: #eef2ff;
+            color: #4338ca;
+            padding: 0.125rem 0.375rem;
+            border-radius: 0.25rem;
+            font-size: 0.9em;
+            font-family: monospace;
+        }
+        blockquote {
+            border-left: 4px solid #6366f1;
+            padding-left: 1rem;
+            margin: 1rem 0;
+            color: #475569;
+        }
+    </style>
+</head>
+<body class="antialiased text-slate-800">
+
+    <div class="container mx-auto p-4 sm:p-6 md:p-12">
+
+        <header class="text-center mb-10">
+            <h1 class="text-4xl md:text-5xl font-bold text-slate-900">FIT1051 终极面试准备指南</h1>
+            <h2 class="text-2xl md:text-3xl font-bold text-indigo-600">Ultimate Interview Prep Guide (Student's Version)</h2>
+            <p class="mt-4 text-lg text-slate-600 max-w-3xl mx-auto">
+                这不是考试，这是一场关于你代码的对话。这份指南是你的思路整理工具，帮助你自信地应对任何问题。
+            </p>
+        </header>
+        
+        <!-- Language Toggle -->
+        <div class="flex justify-center items-center mb-10 lang-toggle">
+            <button id="btn-en" class="px-6 py-2 rounded-l-lg font-semibold border border-gray-300 bg-white text-gray-700">English</button>
+            <button id="btn-zh" class="px-6 py-2 rounded-r-lg font-semibold border border-gray-300 bg-white text-gray-700">中文</button>
+        </div>
+
+        <main id="guide-content">
+            <!-- Section 1 -->
+            <div class="section-card">
+                <h2 class="text-2xl font-bold mb-2 text-slate-900">板块一：程序设计宏观讲解</h2>
+                <h3 class="text-xl font-semibold mb-4 text-indigo-600">Area 1: Explaining Your Program Designs</h3>
+                <blockquote class="lang-en">The interviewer wants to know: Can you clearly describe your project's structure from a high level? This proves you conceived the overall design.</blockquote>
+                <blockquote class="lang-zh">面试官想知道的：你能从“上帝视角”清晰地描述你的项目结构吗？这能证明项目的整体设计是你构思的。</blockquote>
+                <div class="grid md:grid-cols-2 gap-8 mt-6">
+                    <div class="lang-content lang-en">
+                        <h4 class="font-bold text-lg mb-3">English Talking Points</h4>
+                        <ul class="list-disc pl-5 space-y-3">
+                            <li><strong>The Big Picture:</strong> "My project is a 7-day student life simulator. The core idea was to separate the different parts of the game to keep the code clean. I have four main components that work together."</li>
+                            <li><strong>The Components & Their Jobs:</strong>
+                                <ul class="list-circle pl-5 mt-2 space-y-2">
+                                    <li>"<code>GenZLifeSimulator.java</code> is just the entry point. Its <code>main</code> method kicks everything off, and that's it."</li>
+                                    <li>"<code>Student.java</code> is where all the data lives. It's like the character sheet. All the stats—energy, money, etc.—are private fields, which is an example of <strong>encapsulation</strong>. I did this so I could control how stats are changed. For example, in the <code>addEnergy</code> method, I use <code>Math.max(0, ...)</code> to make sure energy can never accidentally drop below zero."</li>
+                                    <li>"<code>Event.java</code> and <code>ActivityEvents.java</code> define all the possible actions. <code>Event</code> is an <code>abstract class</code> that acts as a blueprint for any activity."</li>
+                                    <li>"<code>Simulator.java</code> is the engine. It runs the main game loop, shows menus, gets user input, and applies the game's rules."</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="lang-content lang-zh">
+                        <h4 class="font-bold text-lg mb-3">中文谈话要点</h4>
+                        <ul class="list-disc pl-5 space-y-3">
+                            <li><strong>宏观介绍：</strong>「我的项目是一个7天的学生生活模拟器。核心思路是把游戏的不同部分分开，让代码保持整洁。我主要有四个部分协同工作。」</li>
+                            <li><strong>组件和分工：</strong>
+                                <ul class="list-circle pl-5 mt-2 space-y-2">
+                                    <li>「<code>GenZLifeSimulator.java</code> 只是程序的入口，<code>main</code>方法就在这里，它负责启动游戏，仅此而已。」</li>
+                                    <li>「<code>Student.java</code>是所有数据的存放地，就像角色的属性面板。所有的属性——精力、金钱等——都是私有变量，这是一个<strong>封装 (Encapsulation)</strong> 的例子。我这样做是为了能控制属性如何被修改。比如，在<code>addEnergy</code>方法里，我用了<code>Math.max(0, ...)</code>来确保精力值永远不会意外地变成负数。」</li>
+                                    <li>「<code>Event.java</code>和<code>ActivityEvents.java</code>定义了所有玩家能做的动作。<code>Event</code>是一个<code>abstract</code>(抽象)父类，作为一个活动蓝图。」</li>
+                                    <li>「<code>Simulator.java</code>是游戏的引擎。它负责运行主游戏循环、显示菜单、获取用户输入以及应用游戏规则。」</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2 -->
+            <div class="section-card">
+                <h2 class="text-2xl font-bold mb-2 text-slate-900">板块二：编码决策深度剖析</h2>
+                <h3 class="text-xl font-semibold mb-4 text-indigo-600">Area 2: Discussing Your Coding Decisions</h3>
+                <blockquote class="lang-en">The interviewer wants to know: Is there a reason behind each choice you made? This demonstrates your depth of thought.</blockquote>
+                <blockquote class="lang-zh">面试官想知道的：你做出的每一个选择背后都有理由吗？这能体现你的思考深度。</blockquote>
+                 <div class="grid md:grid-cols-2 gap-8 mt-6">
+                    <div class="lang-content lang-en">
+                        <h4 class="font-bold text-lg mb-3">English Talking Points</h4>
+                        <ul class="list-disc pl-5 space-y-3">
+                             <li><strong>Why an <code>abstract class</code> for <code>Event</code>, not an <code>interface</code>?</strong> "I specifically chose an abstract class because all events share some *implemented code*. The <code>apply</code> method in <code>Event.java</code> contains the logic for the random mishap check. This code is the same for every single event. An interface is just a contract with no implementation, so if I used an interface, I'd have to copy and paste that mishap logic into every event subclass. The abstract class lets me write that shared code just once."</li>
+                            <li><strong>Why use <code>final</code> on the <code>Event.apply()</code> method?</strong> "I made the <code>apply</code> method <code>final</code> on purpose. It forces every event to follow the exact same sequence: first apply base effects, then check for a mishap. I didn't want subclasses to mess up this order or accidentally break the core game rule, so <code>final</code> protects that structure."</li>
+                            <li><strong>Why <code>Array</code> vs. <code>ArrayList</code>?</strong> "I used a standard <code>Array</code> for stat history in the <code>Student</code> class because the game is always 7 days long, so the size is fixed and known. It's simple and direct. I used an <code>ArrayList</code> for the daily activities in the <code>Simulator</code> because the player might choose one or two activities, so the size is variable. An <code>ArrayList</code> is flexible and handles that easily."</li>
+                        </ul>
+                    </div>
+                    <div class="lang-content lang-zh">
+                        <h4 class="font-bold text-lg mb-3">中文谈话要点</h4>
+                        <ul class="list-disc pl-5 space-y-3">
+                            <li><strong>为什么`Event`用抽象类，而不是接口？</strong>「我特意选了抽象类，因为所有事件都共享一段*已经实现了的代码*。`Event.java`里的`apply`方法包含了检查随机意外的逻辑。这段代码对每个事件都完全一样。接口只是一个没有具体实现的契约，所以如果我用了接口，我就必须把那段意外逻辑复制粘贴到每一个事件子类里。用抽象类让我可以把这段共享代码只写一次。」</li>
+                            <li><strong>为什么`Event.apply()`方法要用`final`关键字？</strong>「我是故意把`apply`方法设为`final`的。它强制每个事件都遵循完全相同的执行顺序：先应用基础效果，再检查意外事件。我不希望任何子类搞乱这个顺序，或者意外地破坏游戏的核心规则，所以`final`起到了保护这个结构的作用。」</li>
+                            <li><strong>为什么混用`Array`和`ArrayList`？</strong>「我在`Student`类里用普通`Array`来记录历史数据，因为游戏永远是7天，长度是固定的，用数组简单直接。我在`Simulator`里用`ArrayList`来装每天的活动，因为玩家可能选一个或两个活动，数量是可变的，`ArrayList`的灵活性正好能处理这种情况。」</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Section 3 -->
+            <div class="section-card">
+                <h2 class="text-2xl font-bold mb-2 text-slate-900">板块三：具体代码逻辑解读</h2>
+                <h3 class="text-xl font-semibold mb-4 text-indigo-600">Area 3: Explaining Your Code</h3>
+                <blockquote class="lang-en">The interviewer wants to know: Can you, as the author, explain the logic of any part of your code?</blockquote>
+                <blockquote class="lang-zh">面试官想知道的：你能像作者一样，解释你代码中任意一段的逻辑吗？</blockquote>
+                 <div class="grid md:grid-cols-2 gap-8 mt-6">
+                    <div class="lang-content lang-en">
+                        <h4 class="font-bold text-lg mb-3">English Talking Points</h4>
+                        <ul class="list-disc pl-5 space-y-3">
+                            <li><strong>Explaining <code>Simulator.getValidatedInput()</code>:</strong> "This is a helper method I wrote to make sure the user can't crash the program or enter invalid choices. It's an infinite <code>while (true)</code> loop that only breaks when valid input is received. I wrapped the <code>Integer.parseInt</code> call in a <code>try-catch</code> block. If the user types text instead of a number, it catches the <code>NumberFormatException</code> and prints an error instead of crashing. Then, I check if the number is within the <code>min</code> and <code>max</code> range I provided. Only when a valid integer in the correct range is entered does the method <code>return</code> the value and break the loop."</li>
+                            <li><strong>Explaining the <code>Perk</code> System in <code>Simulator.performActivity()</code>:</strong> "After an event's <code>apply</code> method is called, I have this line: <code>if (chosenPerk != null) { chosenPerk.applyBonus(...) }</code>. This is where <strong>polymorphism</strong> comes in. The <code>chosenPerk</code> variable is of type <code>Perk</code> (the interface), but the object it holds could be an <code>AcademicGeniusPerk</code> or a <code>HardWorkerPerk</code>. When I call <code>applyBonus</code>, Java automatically runs the version of the method from the *actual object* that was created at the start of the game. So this one line of code works for all four different perks without needing any <code>if-else</code> checks."</li>
+                        </ul>
+                    </div>
+                    <div class="lang-content lang-zh">
+                        <h4 class="font-bold text-lg mb-3">中文谈话要点</h4>
+                        <ul class="list-disc pl-5 space-y-3">
+                           <li><strong>解读 `Simulator.getValidatedInput()`:</strong> 「这是我写的一个辅助方法，为了确保用户不能通过乱输来让程序崩溃。它是一个无限`while (true)`循环，只有在用户输入了有效内容后才会跳出。我把`Integer.parseInt`放在一个`try-catch`代码块里。如果用户输入了字母而不是数字，它就会捕获`NumberFormatException`异常并提示错误，而不是直接崩溃。接着，我还会检查这个数字是否在我设定的`min`和`max`范围内。只有当一个在正确范围内的有效数字被输入后，这个方法才会`return`数值并结束循环。」</li>
+                            <li><strong>解读`Perk`系统在`Simulator.performActivity()`中的体现：</strong>「在一个事件的`apply`方法被调用后，我有这样一行代码：<code>if (chosenPerk != null) { chosenPerk.applyBonus(...) }</code>。这正是<strong>多态 (Polymorphism)</strong> 的体现。<code>chosenPerk</code>这个变量的类型是<code>Perk</code>(接口)，但它实际指向的对象可能是<code>AcademicGeniusPerk</code>或者<code>HardWorkerPerk</code>。当我调用<code>applyBonus</code>时，Java会自动执行游戏开始时创建的*那个具体对象*的方法。所以，这一行代码就能处理所有四种不同的专长，完全不需要任何<code>if-else</code>判断。」</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 4 -->
+            <div class="section-card">
+                 <h2 class="text-2xl font-bold mb-2 text-slate-900">板块四：核心编程概念关联</h2>
+                <h3 class="text-xl font-semibold mb-4 text-indigo-600">Area 4: Explaining Coding Concepts</h3>
+                <blockquote class="lang-en">The interviewer wants to know: Can you connect the theoretical concepts from the course (like inheritance, polymorphism) with your own practical code?</blockquote>
+                <blockquote class="lang-zh">面试官想知道的：你能把课程中学到的理论知识（如继承、多态）和你自己的代码实践联系起来吗？</blockquote>
+                 <div class="grid md:grid-cols-2 gap-8 mt-6">
+                    <div class="lang-content lang-en">
+                        <h4 class="font-bold text-lg mb-3">English Talking Points</h4>
+                        <ul class="list-disc pl-5 space-y-3">
+                            <li><strong>Inheritance:</strong> "I used inheritance for my <code>Event</code> structure. For example, <code>ActivityEvents.AllNighterEvent</code> <code>extends</code> <code>Event</code>. This means it automatically gets the <code>eventName</code> field and the <code>apply</code> method from the parent, but it *must* provide its own implementation for the abstract methods like <code>applyBaseEffects</code>."</li>
+                            <li><strong>Polymorphism:</strong> "The best example is the <code>ArrayList&lt;Event&gt;</code> in the <code>Simulator</code>. I can add a <code>new AttendClassEvent()</code> and a <code>new PartTimeShiftEvent()</code> to the same list. When I loop through it and call <code>activity.apply()</code>, polymorphism ensures the correct version of the code runs for each different object."</li>
+                            <li><strong>Abstract Classes vs. Interfaces:</strong> "I used both. <code>Event</code> is an <strong>abstract class</strong> because I wanted to share implemented code (the mishap check logic). <code>Perk</code> is an <strong>interface</strong> because the different perks don't share any code; they only share a capability or a contract—the promise that they will have an <code>applyBonus</code> method."</li>
+                            <li><strong>Enums:</strong> "I used enums for <code>Difficulty</code> and <code>EventType</code>. This is much better than using strings or integers because it's type-safe. The compiler ensures I can only use the predefined values, which prevents typos and makes the code much more readable."</li>
+                        </ul>
+                    </div>
+                    <div class="lang-content lang-zh">
+                        <h4 class="font-bold text-lg mb-3">中文谈话要点</h4>
+                        <ul class="list-disc pl-5 space-y-3">
+                            <li><strong>继承 (Inheritance):</strong> 「我用继承来构建我的`Event`体系。比如，`ActivityEvents.AllNighterEvent` `extends` `Event`。这意味着它自动就拥有了父类的`eventName`字段和`apply`方法，但它*必须*为像`applyBaseEffects`这样的抽象方法提供自己的实现。」</li>
+                            <li><strong>多态 (Polymorphism):</strong> 「最好的例子就是`Simulator`里的那个`ArrayList&lt;Event&gt;`。我可以把一个`new AttendClassEvent()`和一个`new PartTimeShiftEvent()`对象放进同一个列表里。当我遍历这个列表并调用`activity.apply()`时，多态确保了不同对象的正确代码被执行。」</li>
+                            <li><strong>抽象类 vs. 接口:</strong> 「我两个都用到了。`Event`是一个<strong>抽象类</strong>，因为我想在父类里共享已经实现了的代码（意外检查逻辑）。`Perk`是一个<strong>接口</strong>，因为不同的专长不共享任何代码，它们只共享一个‘能力’或者说一个‘契约’——就是它们都承诺自己会有一个`applyBonus`方法。」</li>
+                            <li><strong>枚举 (Enums):</strong> 「我用枚举来定义`Difficulty`(难度)和`EventType`(事件类型)。这比直接用字符串或者数字要好得多，因为它是类型安全的。编译器会保证我只能使用预设好的那几个值，这能防止我打错字，也让代码的可读性更强。」</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 5 -->
+            <div class="section-card">
+                 <h2 class="text-2xl font-bold mb-2 text-slate-900">板块五：现场编码与修改</h2>
+                <h3 class="text-xl font-semibold mb-4 text-indigo-600">Area 5: Modifying Your Code</h3>
+                <blockquote class="lang-en">The interviewer wants to know: Do you truly "own" this code? Can you quickly and accurately modify it under guidance?</blockquote>
+                <blockquote class="lang-zh">面试官想知道的：你是否真的“拥有”这段代码？你能在指导下快速、准确地修改它吗？</blockquote>
+                 <div class="grid md:grid-cols-2 gap-8 mt-6">
+                    <div class="lang-content lang-en">
+                        <h4 class="font-bold text-lg mb-3">English Talking Points</h4>
+                        <ul class="list-disc pl-5 space-y-3">
+                            <li><strong>Simple Change (e.g., "Change crash energy recovery to 15"):</strong> "Okay. That value is a constant at the top of my <code>Simulator.java</code> file. I'll find the line <code>private static final int CRASH_ENERGY_RECOVERY = 10;</code> and change the 10 to a 15."</li>
+                            <li><strong>Complex Change (e.g., "Add a rule: if you skip two days in a row, you lose an extra 10 happiness"):</strong> "That's an interesting idea. My current <code>daysSkipped</code> variable just counts the total. To check for *consecutive* skips, I'd need to check the history. I could add a new method in the <code>Student</code> class, similar to how <code>hasConsecutiveLowHappiness</code> works, that checks a history of skipped days. So in the <code>Simulator</code>, when the player skips, I would call that new method on the student to see if yesterday was also a skip, and if so, apply the penalty."</li>
+                        </ul>
+                    </div>
+                    <div class="lang-content lang-zh">
+                        <h4 class="font-bold text-lg mb-3">中文谈话要点</h4>
+                        <ul class="list-disc pl-5 space-y-3">
+                            <li><strong>简单修改 (例如：「把崩溃后恢复的精力改成15」):</strong>「好的。那个数值是我在`Simulator.java`文件顶部定义的一个常量。我只要找到`private static final int CRASH_ENERGY_RECOVERY = 10;`这一行，把10改成15就行了。」</li>
+                            <li><strong>复杂修改 (例如：「增加一个规则：如果连续两天‘跳过’，额外扣10点幸福度」):</strong>「这是个有趣的想法。我目前的`daysSkipped`变量只统计了总次数。要检查*连续*跳过，我需要去查历史记录。我可以在`Student`类里加一个新方法，就类似于我现在`hasConsecutiveLowHappiness`的实现方式，让它去检查跳过的历史。这样在`Simulator`里，当玩家选择跳过时，我就调用学生对象的这个新方法，看看昨天是不是也跳过了，如果是，就施加惩罚。」</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 6 -->
+            <div class="section-card">
+                 <h2 class="text-2xl font-bold mb-2 text-slate-900">板块六：代码讨论：反思与展望</h2>
+                <h3 class="text-xl font-semibold mb-4 text-indigo-600">Area 6: Discussing Your Code</h3>
+                <blockquote class="lang-en">The interviewer wants to know: Can you think critically about your own work? Do you recognize its limitations and have ideas for improvement?</blockquote>
+                <blockquote class="lang-zh">面试官想知道的：你能对自己的工作进行批判性思考吗？你是否认识到代码的局限性并有改进的想法？</blockquote>
+                 <div class="grid md:grid-cols-2 gap-8 mt-6">
+                    <div class="lang-content lang-en">
+                        <h4 class="font-bold text-lg mb-3">English Talking Points</h4>
+                        <ul class="list-disc pl-5 space-y-3">
+                            <li><strong>The Bug You Fixed:</strong> "I'm actually glad you asked. During testing, I found a significant bug in the <code>processCrash</code> logic where a player could get stuck in an infinite 'crash loop' if their happiness hit zero. It was a good lesson in testing edge cases, not just the 'happy path'. I added a condition to give back a little happiness if it was already critically low, which solved the problem."</li>
+                            <li><strong>Known Limitations:</strong> "A clear limitation is the big <code>switch</code> statement in <code>Simulator</code> that creates the <code>Event</code> objects. It works fine for the current number of events, but it's not very scalable. If this were a bigger project, I'd refactor that using a design pattern like a Factory or a <code>HashMap</code> to make adding new events cleaner."</li>
+                            <li><strong>If You Had More Time:</strong> "The first thing I'd add is a save/load feature. It would be a great challenge to figure out how to serialize the <code>Student</code> object's state to a file and read it back. Another idea would be to make the events more dynamic, for example, certain events might only become available if you meet a specific stat requirement."</li>
+                        </ul>
+                    </div>
+                    <div class="lang-content lang-zh">
+                        <h4 class="font-bold text-lg mb-3">中文谈话要点</h4>
+                        <ul class="list-disc pl-5 space-y-3">
+                           <li><strong>你修复的Bug：</strong> 「我其实很高兴你问这个。在测试中，我确实在`processCrash`逻辑里发现了一个挺严重的bug，玩家可能会因为幸福度变成0而陷入无限的‘崩溃循环’。这给我上了一课，让我知道测试边缘情况的重要性，不能只测试正常流程。我加了一个条件，在幸福度已经极低时，返还一点幸福度，从而解决了这个问题。」</li>
+                            <li><strong>代码的局限性：</strong> 「一个很明显的局限是`Simulator`里面那个根据用户输入创建`Event`对象的`switch`语句。对于目前数量的事件来说它能工作，但扩展性很差。如果这是个更大的项目，我可能会用像工厂模式或者`HashMap`这样的设计来重构它，让添加新事件变得更优雅。」</li>
+                            <li><strong>如果你有更多时间：</strong> 「我第一个想加的功能就是保存/读取系统。学习如何把`Student`对象的状态序列化到一个文件里再读回来，会是一个很好的挑战。另一个想法是让事件变得更动态，比如，某些特殊事件只有在你满足特定属性要求后才会解锁。」</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Section 7 -->
+            <div class="section-card">
+                 <h2 class="text-2xl font-bold mb-2 text-slate-900">板块七：如何应对未知问题</h2>
+                <h3 class="text-xl font-semibold mb-4 text-indigo-600">Area 7: Handling "I Don't Know"</h3>
+                <blockquote class="lang-en">The interviewer wants to know: When you encounter something you don't know, do you give up, make things up, or are you honest and try to solve the problem?</blockquote>
+                <blockquote class="lang-zh">面试官想知道的：当你遇到知识盲区时，你是选择放弃、胡编乱造，还是诚实并尝试解决问题？</blockquote>
+                 <div class="grid md:grid-cols-2 gap-8 mt-6">
+                    <div class="lang-content lang-en">
+                        <h4 class="font-bold text-lg mb-3">English Talking Points</h4>
+                        <ul class="list-disc pl-5 space-y-3">
+                            <li>"That's a good question. I'm not entirely sure about that specific concept off the top of my head. Could you give me a hint, or should I try to walk through my code to figure it out?"</li>
+                            <li>"I haven't encountered that term before in my studies. Could you explain what it means? I'm keen to learn."</li>
+                        </ul>
+                    </div>
+                    <div class="lang-content lang-zh">
+                        <h4 class="font-bold text-lg mb-3">中文谈话要点</h4>
+                        <ul class="list-disc pl-5 space-y-3">
+                            <li>「这是一个好问题。关于这个具体的概念，我一下子不太确定。您能给我一点提示吗，或者我可以通过看代码来尝试想出答案？」</li>
+                            <li>「这个术语我在之前的学习中没有接触过。您能解释一下它的意思吗？我很想学习一下。」</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const btnEn = document.getElementById('btn-en');
+            const btnZh = document.getElementById('btn-zh');
+            const contentEn = document.querySelectorAll('.lang-en');
+            const contentZh = document.querySelectorAll('.lang-zh');
+
+            function setLanguage(lang) {
+                if (lang === 'en') {
+                    btnEn.classList.add('active');
+                    btnZh.classList.remove('active');
+                    contentEn.forEach(el => el.classList.remove('hidden'));
+                    contentZh.forEach(el => el.classList.add('hidden'));
+                } else {
+                    btnZh.classList.add('active');
+                    btnEn.classList.remove('active');
+                    contentZh.forEach(el => el.classList.remove('hidden'));
+                    contentEn.forEach(el => el.classList.add('hidden'));
+                }
+            }
+
+            btnEn.addEventListener('click', () => setLanguage('en'));
+            btnZh.addEventListener('click', () => setLanguage('zh'));
+
+            // Set initial language
+            setLanguage('en');
+        });
+    </script>
+
+</body>
+</html>
